@@ -1,0 +1,7 @@
+{
+  "index": 1,
+  "displayName": "frp≤‚ ‘",
+  "configFile": "frpc.ini",
+  "startAppName": "{AppPath}/frpc.exe",
+  "startArguments": "-c {AppPath}/frpc.ini"
+}
