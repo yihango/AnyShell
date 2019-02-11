@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -29,9 +30,62 @@ namespace AnyShell.WinForms
         {
             InitializeComponent();
 
+
             this.Load += FormMain_Load;
             this.btnRun.Click += BtnRun_Click;
             this.listApp.SelectedIndexChanged += ListApp_SelectedIndexChanged;
+            this.btnEditConfig.Click += BtnEditConfig_Click;
+            this.btnClearLog.Click += BtnClearLog_Click;
+            this.ckbShowLog.Click += CkbShowLog_Click;
+            this.btnOpenDir.Click += BtnOpenDir_Click;
+            this.FormClosing += FormMain_FormClosing;
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 释放运行中的程序
+            if (this.AppInfoList == null || this.AppInfoList.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var appInfo in this.AppInfoList)
+            {
+                appInfo.Exit();
+            }
+        }
+
+        private void BtnOpenDir_Click(object sender, EventArgs e)
+        {
+            if (CurrentAppInfo == null)
+                return;
+
+            Process.Start(CurrentAppInfo.RootPath);
+        }
+
+        private void CkbShowLog_Click(object sender, EventArgs e)
+        {
+            if (CurrentAppInfo == null)
+                return;
+
+            CurrentAppInfo.ReadLog = ckbShowLog.Checked;
+        }
+
+        private void BtnClearLog_Click(object sender, EventArgs e)
+        {
+            if (CurrentAppInfo == null)
+                return;
+
+            CurrentAppInfo.ClearLogs();
+            this.txtLog.Text = string.Empty;
+        }
+
+        private void BtnEditConfig_Click(object sender, EventArgs e)
+        {
+            if (CurrentAppInfo == null)
+                return;
+
+            new FormEditConfig(Path.Combine(CurrentAppInfo.RootPath, CurrentAppInfo.Config.ConfigFile)).Show();
         }
 
         private void ListApp_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,9 +105,10 @@ namespace AnyShell.WinForms
             this.btnRun.Text = tmpCurrentAppInfo.Runing ? "立即停止" : "立即运行";
             if (tmpCurrentAppInfo.ChangeLog == null)
             {
-                tmpCurrentAppInfo.ChangeLog = AnyShellShowWriteLog;
+                tmpCurrentAppInfo.ChangeLog = MyWriteLog;
             }
-
+            this.ckbShowLog.Checked = tmpCurrentAppInfo.ReadLog;
+            tmpCurrentAppInfo.UpdateLog(string.Empty);
             CurrentAppInfo = tmpCurrentAppInfo;
         }
 
@@ -96,6 +151,7 @@ namespace AnyShell.WinForms
                 //滚动到控件光标处
                 this.txtLog.ScrollToCaret();
             };
+
         }
 
         void Bind()
@@ -127,9 +183,10 @@ namespace AnyShell.WinForms
             AppInfoList = AppInfoList.OrderByDescending(o => o.Config.Index).ToList();
         }
 
-        void AnyShellShowWriteLog(string str)
+        void MyWriteLog(string str)
         {
             Invoke(WriteLog, str);
         }
+
     }
 }

@@ -93,14 +93,23 @@ namespace AnyShell.WinForms.Models
             }
 
             // 释放资源
-            Input?.Dispose();
-            Process?.Kill();
+            try
+            {
+                Input?.Dispose();
+                Process?.Kill();
+
+                // 
+                UpdateLog(string.Format("程序结束运行: {0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
+            }
+            catch (Exception)
+            {
+
+            }
             Input = null;
             Process = null;
             // 修改状态
             Runing = false;
-            // 
-            UpdateLog(string.Format("程序结束运行: {0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
+          
 
         }
 
@@ -119,9 +128,9 @@ namespace AnyShell.WinForms.Models
             }
         }
 
-        void UpdateLog(string logStr)
+        public void UpdateLog(string logStr)
         {
-            Logs.AppendLine(logStr);
+            Logs?.AppendLine(logStr);
             ChangeLog?.Invoke(Logs.ToString());
         }
     }
