@@ -61,6 +61,7 @@ namespace AnyShell.WinForms.Models
             Process = new Process();
             Process.StartInfo.FileName = this.Config.StartAppName;
             Process.StartInfo.Arguments = this.Config.StartArguments;// 启动参数
+            Process.StartInfo.WorkingDirectory = this.RootPath;// 工作路径
 
             // 自定义 shell
             Process.StartInfo.UseShellExecute = false;
@@ -109,7 +110,7 @@ namespace AnyShell.WinForms.Models
             Process = null;
             // 修改状态
             Runing = false;
-          
+
 
         }
 
