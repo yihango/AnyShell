@@ -28,7 +28,7 @@ namespace AnyShell.WinForms
 
         private void BtnSaveChange_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream(this.ConfigPath, FileMode.OpenOrCreate, FileAccess.Write))
+            using (FileStream fs = new FileStream(this.ConfigPath, FileMode.Create, FileAccess.Write))
             {
                 var buffer = Encoding.UTF8.GetBytes(this.txtConfig.Text);
                 fs.Write(buffer, 0, buffer.Length);
