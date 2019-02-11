@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.listApp = new System.Windows.Forms.ListBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.btnEditConfig = new System.Windows.Forms.Button();
             this.btnOpenDir = new System.Windows.Forms.Button();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ckbShowLog = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtLog = new System.Windows.Forms.RichTextBox();
-            this.ckbShowLog = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +50,7 @@
             this.listApp.FormattingEnabled = true;
             this.listApp.ItemHeight = 12;
             this.listApp.Location = new System.Drawing.Point(10, 16);
-            this.listApp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listApp.Margin = new System.Windows.Forms.Padding(2);
             this.listApp.Name = "listApp";
             this.listApp.Size = new System.Drawing.Size(159, 292);
             this.listApp.TabIndex = 0;
@@ -57,7 +58,7 @@
             // btnRun
             // 
             this.btnRun.Location = new System.Drawing.Point(173, 28);
-            this.btnRun.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRun.Margin = new System.Windows.Forms.Padding(2);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(112, 29);
             this.btnRun.TabIndex = 4;
@@ -67,7 +68,7 @@
             // btnEditConfig
             // 
             this.btnEditConfig.Location = new System.Drawing.Point(173, 72);
-            this.btnEditConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditConfig.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditConfig.Name = "btnEditConfig";
             this.btnEditConfig.Size = new System.Drawing.Size(112, 29);
             this.btnEditConfig.TabIndex = 6;
@@ -77,7 +78,7 @@
             // btnOpenDir
             // 
             this.btnOpenDir.Location = new System.Drawing.Point(173, 119);
-            this.btnOpenDir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOpenDir.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenDir.Name = "btnOpenDir";
             this.btnOpenDir.Size = new System.Drawing.Size(112, 29);
             this.btnOpenDir.TabIndex = 7;
@@ -87,7 +88,7 @@
             // btnClearLog
             // 
             this.btnClearLog.Location = new System.Drawing.Point(173, 166);
-            this.btnClearLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClearLog.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(112, 29);
             this.btnClearLog.TabIndex = 10;
@@ -98,7 +99,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -118,29 +119,6 @@
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 11;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtLog);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(591, 318);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "运行日志";
-            // 
-            // txtLog
-            // 
-            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLog.Location = new System.Drawing.Point(2, 16);
-            this.txtLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(587, 300);
-            this.txtLog.TabIndex = 0;
-            this.txtLog.Text = "";
-            // 
             // ckbShowLog
             // 
             this.ckbShowLog.AutoSize = true;
@@ -151,15 +129,39 @@
             this.ckbShowLog.Text = "显示日志";
             this.ckbShowLog.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtLog);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(591, 318);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "运行日志";
+            // 
+            // txtLog
+            // 
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(2, 16);
+            this.txtLog.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.Size = new System.Drawing.Size(587, 300);
+            this.txtLog.TabIndex = 0;
+            this.txtLog.Text = "";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 318);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
-            this.Text = "AnyShell";
+            this.Text = "AnyShell - by 玩双截棍的熊猫";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

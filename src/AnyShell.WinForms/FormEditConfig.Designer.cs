@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditConfig));
             this.txtConfig = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnSaveChange = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +67,10 @@
             this.ClientSize = new System.Drawing.Size(428, 289);
             this.Controls.Add(this.txtConfig);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormEditConfig";
-            this.Text = "FormEditConfig";
+            this.Text = "编辑应用配置文件";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
